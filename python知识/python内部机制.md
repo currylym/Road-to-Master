@@ -6,13 +6,13 @@
         - [1.1.2. dict](#112-dict)
     - [1.2. 函数理解](#12-函数理解)
         - [1.2.1. 函数传值还是传引用?](#121-函数传值还是传引用)
+        - [1.2.2. *args与**kwargs](#122-args与kwargs)
     - [1.3. 随机数实现](#13-随机数实现)
     - [1.4. 内部排序](#14-内部排序)
     - [1.5. 线程/进程/协程](#15-线程进程协程)
     - [1.6. 装饰器](#16-装饰器)
     - [1.7. MAX_VALUE](#17-max_value)
     - [1.8. nonlocal](#18-nonlocal)
-    - [1.9. *args与**kwargs](#19-args与kwargs)
 
 <!-- /TOC -->
 
@@ -52,6 +52,27 @@ print(id(b)) # 输出：4324106952
 bar(b)
 print(b) ＃　输出：[1]
 print(id(b))  # 输出：4324106952
+```
+
+### 1.2.2. *args与**kwargs
+>首先明白向python函数传递参数的方式有两种：   
+- 位置参数（positional argument）   
+- 关键词参数（keyword argument）
+
+>现在再来看\*args与\*\*kwargs的区别，两者都是python中的可变参数。 
+\*args表示任何多个无名参数，它本质是一个tuple； 
+\*\*kwargs表示关键字参数，它本质上是一个dict； 
+并且同时使用*args和\*\*kwargs时，必须*args参数列要在\*\*kwargs前
+
+```python
+def fun(*args,**kwargs):
+    print('args=', args)
+    print('kwargs=',kwargs)
+fun(1,2,3,4,A='a',B='b',C='c',D='d')
+
+#输出
+#args= (1, 2, 3, 4)
+#kwargs= {'A': 'a', 'B': 'b', 'C': 'c', 'D': 'd'}
 ```
 
 ## 1.3. 随机数实现
@@ -96,25 +117,4 @@ if __name__ == '__main__':
 #a函数里面
 #2
 #1
-```
-
-## 1.9. *args与**kwargs
->首先明白向python函数传递参数的方式有两种：   
-- 位置参数（positional argument）   
-- 关键词参数（keyword argument）
-
->现在再来看\*args与\*\*kwargs的区别，两者都是python中的可变参数。 
-\*args表示任何多个无名参数，它本质是一个tuple； 
-\*\*kwargs表示关键字参数，它本质上是一个dict； 
-并且同时使用*args和\*\*kwargs时，必须*args参数列要在\*\*kwargs前
-
-```python
-def fun(*args,**kwargs):
-    print('args=', args)
-    print('kwargs=',kwargs)
-fun(1,2,3,4,A='a',B='b',C='c',D='d')
-
-#输出
-#args= (1, 2, 3, 4)
-#kwargs= {'A': 'a', 'B': 'b', 'C': 'c', 'D': 'd'}
 ```
